@@ -53,8 +53,54 @@ class LSE
 		void Borrar(int);
 };
 
+//Funcion De Clase LSE Que Borra EL Dato Inicial De La Lista
+void LSE::BorrarI()
+{
+    if(!Inicio)			//Verifica si hay inicio
+        cout<<"Lista Vacia"<<endl;
+	
+    else			
+        {
+            if(Inicio->Obtienesig()==NULL)	//Para Cuando Inicio Es El Unico Dato De La Lista, Elimina Inicio Dejando La Lista Vacia	
+                {
+                    delete Inicio;
+                    Inicio=NULL;
+                }
+	    
+            else
+                {
+                    Nodo *hay=Inicio;		//Apuntador Auxiliar Que Apunta A Inicio
+                    Inicio=Inicio->Obtienesig();	//Ordena Que Inicio Se Coloque En Donde El Mismo Inicio Esta Apuntando 
+                    hay->Asignasig(NULL);		//Elimina El Apuntador Auxiliar Ya Que Este APunta Hacia EL Primer Dato
+                    delete hay;
+                }
+        }
+}
 
-
+//Funcion De Clase LSE Que Borra EL Dato Final De La Lista
+void LSE::BorrarF()
+{    if(!Inicio)		//Verifica Si Hay Inicio
+    cout<<"Lista Vacia";
+else
+{    if(Inicio->Obtienesig()==NULL)		//Cuando Solo Hay Un Dato El Final Y El Inicio Es El Mismo Haciendo Que se Elimine El Unico Dato
+{    delete Inicio;
+    Inicio=NULL;
+}
+else		
+{    
+	Nodo *Aux1,*Aux2;		//Se Crean Dos Apuntadores Auxiliares 
+    	Aux1=Inicio;
+	
+    	while(Aux1->Obtienesig()!=NULL) //Va Recorriendo La Lista Hasta LLegar Uno Antes Al Ultimo
+    	{
+		Aux2=Aux1;	//El Auxiliar Dos Ahora Apunta Al Antepenultimo Dato 
+        	Aux1=Aux1->Obtienesig();	//El Auxiliar 1 Es El Ultimo Dato "El Que Se Debe Eliminar"
+    	}
+    	Aux2->Asignasig(NULL);		//Ordena Que El Que Ahora Es EL Ultimo Dato Apunte a NULL
+    	delete Aux1;		//Eliminas El Auxiliar 1 ya Que Era El Ultimo Dato
+}
+}
+}
 
 
 
